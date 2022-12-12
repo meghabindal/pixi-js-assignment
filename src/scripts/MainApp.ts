@@ -3,6 +3,7 @@ import * as PIXI from 'pixi.js'
 import { AppEngine, TextMenuScene } from './AppEngine';
 import CardsDeckScene from './CardsDeckScene';
 import TextEmojiScene from './TextEmojiScene';
+import FireAnimationScene from './FireAnimationScene';
 
 
 export default class MainApp extends AppEngine {
@@ -32,11 +33,13 @@ export default class MainApp extends AppEngine {
         }
         const loader = new PIXI.Loader()
         const cardsDeckScene = new CardsDeckScene(this, returnToMenu);
-        const textEmojiScene = new TextEmojiScene(this, returnToMenu)
+        const textEmojiScene = new TextEmojiScene(this, returnToMenu);
+        const fireAnimationScene = new FireAnimationScene(this, returnToMenu);
 
 
         cardsDeckScene.init(loader);
         textEmojiScene.init(loader);
+        fireAnimationScene.init(loader);
 
 
         menu.add("CARDS DECK", () => {
@@ -47,11 +50,14 @@ export default class MainApp extends AppEngine {
             this.setActiveScene("text-emoji");
         })
 
+        menu.add("FIRE ANIMATION", () => {
+            this.setActiveScene("fire-animation");
+        })
 
         this.addScene("menu", menu);
         this.addScene("cards-deck", cardsDeckScene)
         this.addScene("text-emoji", textEmojiScene)
-
+        this.addScene("fire-animation", fireAnimationScene)
 
         this.setActiveScene("menu")
         fpsDisplay.style.left = "0";
@@ -71,6 +77,9 @@ export default class MainApp extends AppEngine {
 
             textEmojiScene.build(resources)
             textEmojiScene.resize(this.renderer.width, this.renderer.height)
+
+            fireAnimationScene.build(resources)
+            fireAnimationScene.resize(this.renderer.width, this.renderer.height)
 
             fpsDisplay.style.left = "10px";
             fpsDisplay.style.top = "10px";

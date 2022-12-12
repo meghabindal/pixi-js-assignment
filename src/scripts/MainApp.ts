@@ -54,6 +54,12 @@ export default class MainApp extends AppEngine {
             this.setActiveScene("fire-animation");
         })
 
+        menu.add("FULL SCREEN", () => {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+        })
+
         this.addScene("menu", menu);
         this.addScene("cards-deck", cardsDeckScene)
         this.addScene("text-emoji", textEmojiScene)

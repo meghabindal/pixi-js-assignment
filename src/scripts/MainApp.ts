@@ -1,7 +1,8 @@
 
-import * as PIXI from 'pixi.js';
+import * as PIXI from 'pixi.js'
 import { AppEngine, TextMenuScene } from './AppEngine';
 import CardsDeckScene from './CardsDeckScene';
+import TextEmojiScene from './TextEmojiScene';
 
 
 export default class MainApp extends AppEngine {
@@ -30,17 +31,27 @@ export default class MainApp extends AppEngine {
             this.setActiveScene("menu")
         }
         const loader = new PIXI.Loader()
-        const cardsDeckScene = new CardsDeckScene(this, returnToMenu)
+        const cardsDeckScene = new CardsDeckScene(this, returnToMenu);
+        const textEmojiScene = new TextEmojiScene(this, returnToMenu)
+
 
         cardsDeckScene.init(loader);
+        textEmojiScene.init(loader);
+
 
         menu.add("CARDS DECK", () => {
             this.setActiveScene("cards-deck");
         })
 
+        menu.add("TEXT EMOJIS", () => {
+            this.setActiveScene("text-emoji");
+        })
+
 
         this.addScene("menu", menu);
         this.addScene("cards-deck", cardsDeckScene)
+        this.addScene("text-emoji", textEmojiScene)
+
 
         this.setActiveScene("menu")
         fpsDisplay.style.left = "0";
@@ -57,6 +68,9 @@ export default class MainApp extends AppEngine {
 
             cardsDeckScene.build(resources)
             cardsDeckScene.resize(this.renderer.width, this.renderer.height)
+
+            textEmojiScene.build(resources)
+            textEmojiScene.resize(this.renderer.width, this.renderer.height)
 
             fpsDisplay.style.left = "10px";
             fpsDisplay.style.top = "10px";

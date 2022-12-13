@@ -121,11 +121,11 @@ export class AppEngine {
 //generic textbutton that are used to display clickable text on screen
 export class TextButton extends PIXI.Text {
     static labelStyle = new PIXI.TextStyle({
-        fontFamily: 'Arial',
-        fontSize: 36,
+        fontFamily: '"sans-serif"',
+        fontSize: 30,
         fontStyle: 'italic',
         fontWeight: 'bold',
-        fill: ['#ffffff', '#00ff99'],
+        fill: ['#A2A5EE', '#00ff99'],
         stroke: '#4a1850',
         strokeThickness: 5,
         dropShadow: true,
